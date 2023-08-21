@@ -4,12 +4,12 @@ import 'package:quiz_application/summary.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultScreen extends StatelessWidget {
-  void subs() {
-    String submitScreen = 'submit-screen';
-  }
-
-  const ResultScreen({super.key, required this.choosenAnswer});
-
+  const ResultScreen({
+    super.key,
+    required this.choosenAnswer,
+    required this.onRestart,
+  });
+  final void Function() onRestart;
   final List<String> choosenAnswer;
 
   List<Map<String, Object>> getSummaryData() {
@@ -59,9 +59,12 @@ class ResultScreen extends StatelessWidget {
               height: 30,
             ),
             TextButton.icon(
-              onPressed: subs,
-              icon: const Icon(Icons.restart_alt_rounded),
-              label: const Text('Submit'),
+              onPressed: onRestart,
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+              ),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Restart Quiz!'),
             )
           ],
         ),
